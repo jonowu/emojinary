@@ -36,6 +36,7 @@ const Play = () => {
       if (playerInput === answer) {
         correct = true;
         setPoints(points + 1);
+        _.remove(movies, movie);
         setMovie(_.shuffle(movies)[0]);
       }
     });
@@ -51,29 +52,37 @@ const Play = () => {
       <Row justifyContent="center" mb="2rem">
         <div>Points: {points}</div>
       </Row>
-      <Row justifyContent="center" mb="2rem">
-        <Emoji>{movie.emoji}</Emoji>
-      </Row>
-      <Row justifyContent="center" mb="2rem" mx="5rem">
-        <StyledInput
-          type="text"
-          placeholder="Please enter your answer"
-          value={playerInput}
-          onChange={(e) => setPlayerInput(e.target.value)}
-          onKeyPress={(event) => {
-            if (event.key === 'Enter') {
-              checkAnswer();
-            }
-          }}
-        />
-      </Row>
-      <Row justifyContent="center">
-        <Box>
-          <Button type={'button'} onClick={checkAnswer}>
-            Submit
-          </Button>
-        </Box>
-      </Row>
+      {movies.length > 0 ? (
+        <>
+          <Row justifyContent="center" mb="2rem">
+            <Emoji>{movie.emoji}</Emoji>
+          </Row>
+          <Row justifyContent="center" mb="2rem" mx="5rem">
+            <StyledInput
+              type="text"
+              placeholder="Please enter your answer"
+              value={playerInput}
+              onChange={(e) => setPlayerInput(e.target.value)}
+              onKeyPress={(event) => {
+                if (event.key === 'Enter') {
+                  checkAnswer();
+                }
+              }}
+            />
+          </Row>
+          <Row justifyContent="center">
+            <Box>
+              <Button type={'button'} onClick={checkAnswer}>
+                Submit
+              </Button>
+            </Box>
+          </Row>
+        </>
+      ) : (
+        <Row justifyContent="center" mb="2rem">
+          You answered all movies!
+        </Row>
+      )}
     </Layout>
   );
 };
