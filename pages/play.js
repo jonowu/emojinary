@@ -26,22 +26,29 @@ const Emoji = styled.div`
 `;
 
 const Play = () => {
-  const [movie, setMovie] = useState(_.shuffle(movies)[0]);
-  const [points, setPoints] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [movie, setMovie] = useState({});
   const [playerInput, setPlayerInput] = useState('');
+  const [points, setPoints] = useState(0);
+
+  useEffect(() => {
+    setMovie(_.shuffle(movies)[0]);
+    setLoading(false);
+    console.log(movie);
+  }, []);
 
   const checkAnswer = () => {
     let correct = false;
     _.each(movie.answers, (answer) => {
-      if (playerInput === answer) {
+      if (playerInput.toUpperCase() === answer.toUpperCase()) {
         correct = true;
         setPoints(points + 1);
         _.remove(movies, movie);
         setMovie(_.shuffle(movies)[0]);
+        setPlayerInput('');
       }
     });
     correct ? console.log('correct') : console.log('incorrect');
-    setPlayerInput('');
   };
 
   return (
@@ -52,7 +59,7 @@ const Play = () => {
       <Row justifyContent="center" mb="2rem">
         <div>Points: {points}</div>
       </Row>
-      {movies.length > 0 ? (
+      {!loading && movies.length > 0 && (
         <>
           <Row justifyContent="center" mb="2rem">
             <Emoji>{movie.emoji}</Emoji>
@@ -78,9 +85,10 @@ const Play = () => {
             </Box>
           </Row>
         </>
-      ) : (
+      )}
+      {!loading && movies.length === 0 && (
         <Row justifyContent="center" mb="2rem">
-          You answered all movies!
+          No more movies left!
         </Row>
       )}
     </Layout>
