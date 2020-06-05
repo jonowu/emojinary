@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Flex, Box } from 'reflexbox';
 
 import Layout from '../components/layout';
 import Button from '../components/button';
@@ -12,7 +13,11 @@ const HomePage = () => {
   return (
     <Layout>
       <Title>Emojinary</Title>
-      <Button href={'/play'}>Play</Button>
+      <Flex justifyContent="center" mt="3rem">
+        <Box>
+          <Button href={'/play'}>Play</Button>
+        </Box>
+      </Flex>
     </Layout>
   );
 };
