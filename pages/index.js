@@ -15,7 +15,9 @@ const HomePage = () => {
       <Title>Emojinary</Title>
       <Flex justifyContent="center" mt="3rem">
         <Box>
-          <Button href={'/play'}>Play</Button>
+          <Button type="link" href={'/play'}>
+            Play
+          </Button>
         </Box>
       </Flex>
     </Layout>

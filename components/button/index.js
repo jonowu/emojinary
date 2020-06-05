@@ -12,12 +12,21 @@ const StyledAnchor = styled.a`
   padding: 10px 50px;
 `;
 
-const Button = ({ href, children }) => {
+const StyledButton = styled.a`
+  background-color: orange;
+  color: white;
+  padding: 10px 50px;
+`;
+
+const Button = ({ type, href, children, onClick }) => {
   return (
     <Wrapper>
-      <Link href={href}>
-        <StyledAnchor>{children}</StyledAnchor>
-      </Link>
+      {type === 'link' && (
+        <Link href={href}>
+          <StyledAnchor>{children}</StyledAnchor>
+        </Link>
+      )}
+      {type === 'button' && <StyledButton onClick={onClick}>{children}</StyledButton>}
     </Wrapper>
   );
 };
