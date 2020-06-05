@@ -26,14 +26,9 @@ const Emoji = styled.div`
 `;
 
 const Play = () => {
-  const [movie, setMovie] = useState('');
+  const [movie, setMovie] = useState(_.shuffle(movies)[0]);
   const [points, setPoints] = useState(0);
   const [playerInput, setPlayerInput] = useState('');
-
-  useEffect(() => {
-    const randomMovie = _.shuffle(movies)[0];
-    setMovie(randomMovie);
-  }, [points]);
 
   const checkAnswer = () => {
     let correct = false;
@@ -41,9 +36,11 @@ const Play = () => {
       if (playerInput === answer) {
         correct = true;
         setPoints(points + 1);
+        setMovie(_.shuffle(movies)[0]);
       }
     });
     correct ? console.log('correct') : console.log('incorrect');
+    setPlayerInput('');
   };
 
   return (
@@ -63,6 +60,11 @@ const Play = () => {
           placeholder="Please enter your answer"
           value={playerInput}
           onChange={(e) => setPlayerInput(e.target.value)}
+          onKeyPress={(event) => {
+            if (event.key === 'Enter') {
+              checkAnswer();
+            }
+          }}
         />
       </Row>
       <Row justifyContent="center">
