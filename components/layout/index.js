@@ -7,7 +7,6 @@ const Wrapper = styled.div`
   overflow: hidden;
   position: relative;
   background: #fffff3;
-  padding-bottom: 74px;
 `;
 
 const Layout = ({ children }) => {

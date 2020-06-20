@@ -19,6 +19,9 @@ const StyledInput = styled.input`
   width: 100%;
   border-style: solid;
   font-weight: bold;
+  :focus {
+    box-shadow: 0 0 8px 0 dodgerblue;
+  }
 `;
 
 const Emoji = styled.div`
@@ -78,11 +81,9 @@ const Play = () => {
             />
           </Row>
           <Row justifyContent="center">
-            <Box>
-              <Button type={'button'} onClick={checkAnswer}>
-                Submit
-              </Button>
-            </Box>
+            <Button type={'button'} onClick={checkAnswer}>
+              Submit
+            </Button>
           </Row>
         </>
       )}
