@@ -9,12 +9,14 @@ const Wrapper = styled.span`
 const StyledAnchor = styled.a`
   background-color: orange;
   color: white;
+  cursor: pointer;
   padding: 10px 50px;
 `;
 
 const StyledButton = styled.a`
   background-color: orange;
   color: white;
+  cursor: pointer;
   padding: 10px 50px;
 `;
 

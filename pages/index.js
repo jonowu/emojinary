@@ -36,13 +36,11 @@ const HomePage = () => {
       </Flex>
       <Footer>
         <Row flexDirection={['column', 'row']} flexWrap="wrap" justifyContent={['center', 'flex-start']} py="1rem">
-          <Copyright mt={['0.5rem', '0']} width={['100%', '15%']} order={[3, 0]}>
+          <Copyright width={['100%', '15%']} order={[3, 0]}>
             © Copyright
           </Copyright>
           <Byline width={['100%', '70%']}>The ultimate emoji trivia game!</Byline>
-          <Credits mt={['0.5rem', '0']} width={['100%', '15%']}>
-            Credits
-          </Credits>
+          <Credits width={['100%', '15%']}>Credits</Credits>
         </Row>
       </Footer>
     </Layout>
