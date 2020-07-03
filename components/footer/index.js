@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   bottom: 0;
   height: 74px;
   display: flex;
+  background-color: palevioletred;
 `;
 
 const Container = styled.div`
