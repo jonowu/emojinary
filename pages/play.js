@@ -31,25 +31,38 @@ const Play = () => {
   const [showHint, setShowHint] = useState(false);
 
   useEffect(() => {
-    randomiseMovie();
+    if (movies.length > 0) {
+      randomiseMovie();
+    }
     setLoading(false);
   }, []);
 
   const randomiseMovie = () => {
     const randomMovie = _.shuffle(movies)[0];
     setMovie(randomMovie);
+    setShowHint(false);
     setHint(randomMovie.hint);
+  };
+
+  const skipMovie = () => {
+    if (movies.length > 1) {
+      const skippedMovie = movie;
+      _.remove(movies, skippedMovie); // remove the movie to be skipped
+      randomiseMovie();
+      movies.push(skippedMovie); // add back the movie that was skipped
+    }
   };
 
   const checkAnswer = () => {
     _.each(movie.answers, (answer) => {
       if (playerInput.toUpperCase().trim() === answer.toUpperCase()) {
         setPoints(points + 1);
-        _.remove(movies, movie);
-        setShowHint(false);
-        randomiseMovie();
         setPlayerInput('');
         setIncorrect(false);
+        _.remove(movies, movie);
+        if (movies.length > 0) {
+          randomiseMovie();
+        }
         return false;
       } else {
         setIncorrect(true);
@@ -93,6 +106,11 @@ const Play = () => {
               </Button>
             </Col>
             <Col>
+              <Button type={'button'} onClick={skipMovie} mr="1rem">
+                Skip
+              </Button>
+            </Col>
+            <Col>
               <Button type={'button'} onClick={() => setShowHint(!showHint)}>
                 {showHint ? 'Hide hint' : 'Show hint'}
               </Button>
@@ -108,7 +126,7 @@ const Play = () => {
         </>
       )}
       {!loading && movies.length === 0 && (
-        <Row justifyContent="center" mb="2rem">
+        <Row justifyContent="center" mt="2rem">
           Congratulations 🎉 You've guessed all the movies — thanks for playing!
         </Row>
       )}
