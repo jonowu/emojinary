@@ -46,6 +46,7 @@ const Play = () => {
       if (playerInput.toUpperCase() === answer.toUpperCase()) {
         setPoints(points + 1);
         _.remove(movies, movie);
+        setShowHint(false);
         randomiseMovie();
         setPlayerInput('');
         setIncorrect(false);
