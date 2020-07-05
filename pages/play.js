@@ -69,7 +69,7 @@ const Play = () => {
           <Row justifyContent="center" mb="2rem">
             <Emoji>{movie.emoji}</Emoji>
           </Row>
-          <Row justifyContent="center" mb="2rem" mx="5rem">
+          <Row justifyContent="center" mb="2rem" mx={[2, 4]}>
             <Input
               type="text"
               placeholder="Please enter your answer"
