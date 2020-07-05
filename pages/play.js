@@ -30,6 +30,7 @@ const Play = () => {
   const [incorrect, setIncorrect] = useState();
   const [hint, setHint] = useState();
   const [showHint, setShowHint] = useState(false);
+  const [usedHint, setUsedHint] = useState(false);
 
   useEffect(() => {
     if (movies.length > 0) {
@@ -112,7 +113,13 @@ const Play = () => {
               </Button>
             </Box>
             <Box width={[1, 4 / 5, 'auto']} mt={['0.5rem', 0]}>
-              <Button type={'button'} onClick={() => setShowHint(!showHint)}>
+              <Button
+                type={'button'}
+                onClick={() => {
+                  setShowHint(!showHint);
+                  setUsedHint(true);
+                }}
+              >
                 {showHint ? 'Hide hint' : 'Show hint'}
               </Button>
             </Box>
@@ -127,9 +134,10 @@ const Play = () => {
         </>
       )}
       {!loading && movies.length === 0 && (
-        <Row justifyContent="center" mt="2rem">
-          Congratulations 🎉 You've guessed all the movies — thanks for playing!
-        </Row>
+        <Box width="auto" textAlign="center" mt="1rem" mx="2rem">
+          <div>Congratulations 🎉 You've guessed all the movies — thanks for playing!</div>
+          {!usedHint && <div>You also used no hints! Wow 👏</div>}
+        </Box>
       )}
     </Layout>
   );
