@@ -1,6 +1,7 @@
 import Head from 'next/head';
 
 import GlobalStyle from '../components/global-style';
+import ThemeProvider from '../components/theme-provider';
 
 const App = ({ Component, pageProps }) => {
   return (
@@ -8,8 +9,9 @@ const App = ({ Component, pageProps }) => {
       <Head>
         <title>Emojinary</title>
       </Head>
-      <GlobalStyle />
-      <Component {...pageProps} />
+      <ThemeProvider>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   );
 };
