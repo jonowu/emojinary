@@ -11,6 +11,7 @@ const StyledAnchor = styled.a`
   color: white;
   cursor: pointer;
   padding: 10px 50px;
+  border-radius: 20px;
 `;
 
 const StyledButton = styled.a`
@@ -18,6 +19,7 @@ const StyledButton = styled.a`
   color: white;
   cursor: pointer;
   padding: 10px 50px;
+  border-radius: 20px;
 `;
 
 const Button = ({ type, href, children, onClick }) => {
