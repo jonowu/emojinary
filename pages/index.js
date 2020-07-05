@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Flex } from 'reflexbox';
+import { Flex, Box } from 'reflexbox';
 
 import { Row, Col } from '../components/grid';
 import Layout from '../components/layout';
@@ -12,7 +12,11 @@ const Title = styled.h1`
 `;
 
 const Copyright = styled(Col)`
-  text-align: left;
+  text-align: center;
+
+  ${({ theme }) => theme.media.md`
+    text-align: left;
+  `};
 `;
 
 const Byline = styled(Col)`
@@ -20,7 +24,11 @@ const Byline = styled(Col)`
 `;
 
 const Credits = styled(Col)`
-  text-align: right;
+  text-align: center;
+
+  ${({ theme }) => theme.media.md`
+    text-align: right;
+  `};
 `;
 
 const HomePage = () => {
@@ -33,10 +41,14 @@ const HomePage = () => {
         </Button>
       </Flex>
       <Footer>
-        <Row>
-          <Copyright width="30%">© Copyright Jonathan Wu 2020</Copyright>
-          <Byline width="40%">The ultimate emoji trivia game!</Byline>
-          <Credits width="30%">Credits</Credits>
+        <Row flexDirection={['column', 'row']} flexWrap="wrap" justifyContent={['center', 'flex-start']}>
+          <Copyright mt={['0.5rem', '0']} width={['100%', '15%']} order={[3, 0]}>
+            © Copyright Jonathan Wu 2020
+          </Copyright>
+          <Byline width={['100%', '70%']}>The ultimate emoji trivia game!</Byline>
+          <Credits mt={['0.5rem', '0']} width={['100%', '15%']}>
+            Credits
+          </Credits>
         </Row>
       </Footer>
     </Layout>

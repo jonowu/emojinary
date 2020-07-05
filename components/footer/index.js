@@ -4,8 +4,12 @@ const Wrapper = styled.div`
   width: 100%;
   position: fixed;
   bottom: 0;
-  height: 74px;
   display: flex;
+  height: 74px;
+
+  ${({ theme }) => theme.media.smDown`
+    height: 120px;
+  `};
 `;
 
 const Container = styled.div`
