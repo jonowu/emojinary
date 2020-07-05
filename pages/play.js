@@ -1,3 +1,4 @@
+import { Box, Flex } from 'reflexbox';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import _ from 'lodash';
@@ -5,7 +6,7 @@ import _ from 'lodash';
 import Layout from '../components/layout';
 import Button from '../components/button';
 import Input from '../components/input';
-import { Row, Col } from '../components/grid';
+import { Row } from '../components/grid';
 import { movies } from '../data';
 
 const Heading = styled.h2`
@@ -99,23 +100,23 @@ const Play = () => {
               incorrect={incorrect}
             />
           </Row>
-          <Row justifyContent="center">
-            <Col>
+          <Flex justifyContent="center" textAlign="center" flexWrap={['wrap', 'nowrap']}>
+            <Box width={[1, 4 / 5, 'auto']} mr={['0', '1rem']}>
               <Button type={'button'} onClick={checkAnswer} mr="1rem">
                 Submit
               </Button>
-            </Col>
-            <Col>
+            </Box>
+            <Box width={[1, 4 / 5, 'auto']} mt={['0.5rem', 0]} mr={['0', '1rem']}>
               <Button type={'button'} onClick={skipMovie} mr="1rem">
                 Skip
               </Button>
-            </Col>
-            <Col>
+            </Box>
+            <Box width={[1, 4 / 5, 'auto']} mt={['0.5rem', 0]}>
               <Button type={'button'} onClick={() => setShowHint(!showHint)}>
                 {showHint ? 'Hide hint' : 'Show hint'}
               </Button>
-            </Col>
-          </Row>
+            </Box>
+          </Flex>
           {showHint && (
             <Row justifyContent="center" mt="2rem">
               <div>
