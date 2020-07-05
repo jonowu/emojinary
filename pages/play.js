@@ -32,20 +32,18 @@ const Play = () => {
   }, []);
 
   const checkAnswer = () => {
-    let correct = false;
     _.each(movie.answers, (answer) => {
       if (playerInput.toUpperCase() === answer.toUpperCase()) {
-        correct = true;
         setPoints(points + 1);
         _.remove(movies, movie);
         setMovie(_.shuffle(movies)[0]);
         setPlayerInput('');
+        setIncorrect(false);
+        return false;
       } else {
         setIncorrect(true);
       }
     });
-    correct ? console.log('correct') : console.log('incorrect');
-    return correct;
   };
 
   return (
