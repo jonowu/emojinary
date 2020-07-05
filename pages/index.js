@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Flex, Box } from 'reflexbox';
+import { Flex } from 'reflexbox';
 
 import { Row, Col } from '../components/grid';
 import Layout from '../components/layout';

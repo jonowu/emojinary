@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Flex, Box } from 'reflexbox';
 import _ from 'lodash';
 
 import Layout from '../components/layout';
 import Button from '../components/button';
 import Input from '../components/input';
-import { Col, Row } from '../components/grid';
+import { Row } from '../components/grid';
 import { movies } from '../data';
 
 const Heading = styled.h2`
@@ -28,7 +27,6 @@ const Play = () => {
   useEffect(() => {
     setMovie(_.shuffle(movies)[0]);
     setLoading(false);
-    console.log(movie);
   }, []);
 
   const checkAnswer = () => {
