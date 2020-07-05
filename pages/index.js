@@ -27,18 +27,16 @@ const HomePage = () => {
   return (
     <Layout>
       <Title>Emojinary</Title>
-      <Flex justifyContent="center" mt="3rem">
-        <Box>
-          <Button type="link" href={'/play'}>
-            Play
-          </Button>
-        </Box>
+      <Flex justifyContent="center">
+        <Button type="link" href={'/play'}>
+          Play
+        </Button>
       </Flex>
       <Footer>
         <Row>
-          <Copyright width="15%">© Copyright</Copyright>
-          <Byline width="70%">The ultimate emoji trivia game!</Byline>
-          <Credits width="15%">Credits</Credits>
+          <Copyright width="30%">© Copyright Jonathan Wu 2020</Copyright>
+          <Byline width="40%">The ultimate emoji trivia game!</Byline>
+          <Credits width="30%">Credits</Credits>
         </Row>
       </Footer>
     </Layout>
