@@ -108,7 +108,7 @@ const Play = () => {
       )}
       {!loading && movies.length === 0 && (
         <Row justifyContent="center" mb="2rem">
-          No more movies left!
+          Congratulations 🎉 You've guessed all the movies — thanks for playing!
         </Row>
       )}
     </Layout>
