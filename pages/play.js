@@ -5,20 +5,13 @@ import _ from 'lodash';
 
 import Layout from '../components/layout';
 import Button from '../components/button';
+import Input from '../components/input';
 import { Col, Row } from '../components/grid';
 import { movies } from '../data';
 
 const Heading = styled.h2`
   text-align: center;
   font-size: 2rem;
-`;
-
-const StyledInput = styled.input`
-  padding: 0 1rem;
-  height: 50px;
-  width: 100%;
-  border-style: solid;
-  font-weight: bold;
 `;
 
 const Emoji = styled.div`
@@ -30,6 +23,7 @@ const Play = () => {
   const [movie, setMovie] = useState({});
   const [playerInput, setPlayerInput] = useState('');
   const [points, setPoints] = useState(0);
+  const [incorrect, setIncorrect] = useState();
 
   useEffect(() => {
     setMovie(_.shuffle(movies)[0]);
@@ -46,9 +40,12 @@ const Play = () => {
         _.remove(movies, movie);
         setMovie(_.shuffle(movies)[0]);
         setPlayerInput('');
+      } else {
+        setIncorrect(true);
       }
     });
     correct ? console.log('correct') : console.log('incorrect');
+    return correct;
   };
 
   return (
@@ -65,7 +62,7 @@ const Play = () => {
             <Emoji>{movie.emoji}</Emoji>
           </Row>
           <Row justifyContent="center" mb="2rem" mx="5rem">
-            <StyledInput
+            <Input
               type="text"
               placeholder="Please enter your answer"
               value={playerInput}
@@ -73,8 +70,11 @@ const Play = () => {
               onKeyPress={(event) => {
                 if (event.key === 'Enter') {
                   checkAnswer();
+                } else {
+                  setIncorrect(false);
                 }
               }}
+              incorrect={incorrect}
             />
           </Row>
           <Row justifyContent="center">
