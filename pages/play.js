@@ -5,7 +5,7 @@ import _ from 'lodash';
 import Layout from '../components/layout';
 import Button from '../components/button';
 import Input from '../components/input';
-import { Row } from '../components/grid';
+import { Row, Col } from '../components/grid';
 import { movies } from '../data';
 
 const Heading = styled.h2`
@@ -17,24 +17,36 @@ const Emoji = styled.div`
   font-size: 4rem;
 `;
 
+const Hint = styled.span`
+  font-style: italic;
+`;
+
 const Play = () => {
   const [loading, setLoading] = useState(true);
   const [movie, setMovie] = useState({});
   const [playerInput, setPlayerInput] = useState('');
   const [points, setPoints] = useState(0);
   const [incorrect, setIncorrect] = useState();
+  const [hint, setHint] = useState();
+  const [showHint, setShowHint] = useState(false);
 
   useEffect(() => {
-    setMovie(_.shuffle(movies)[0]);
+    randomiseMovie();
     setLoading(false);
   }, []);
+
+  const randomiseMovie = () => {
+    const randomMovie = _.shuffle(movies)[0];
+    setMovie(randomMovie);
+    setHint(randomMovie.hint);
+  };
 
   const checkAnswer = () => {
     _.each(movie.answers, (answer) => {
       if (playerInput.toUpperCase() === answer.toUpperCase()) {
         setPoints(points + 1);
         _.remove(movies, movie);
-        setMovie(_.shuffle(movies)[0]);
+        randomiseMovie();
         setPlayerInput('');
         setIncorrect(false);
         return false;
@@ -49,7 +61,7 @@ const Play = () => {
       <Row justifyContent="center">
         <Heading>Guess the Movie!</Heading>
       </Row>
-      <Row justifyContent="center" mb="2rem">
+      <Row justifyContent="center" mb="0.5rem">
         <div>Points: {points}</div>
       </Row>
       {!loading && movies.length > 0 && (
@@ -74,10 +86,24 @@ const Play = () => {
             />
           </Row>
           <Row justifyContent="center">
-            <Button type={'button'} onClick={checkAnswer}>
-              Submit
-            </Button>
+            <Col>
+              <Button type={'button'} onClick={checkAnswer} mr="1rem">
+                Submit
+              </Button>
+            </Col>
+            <Col>
+              <Button type={'button'} onClick={() => setShowHint(!showHint)}>
+                {showHint ? 'Hide hint' : 'Show hint'}
+              </Button>
+            </Col>
           </Row>
+          {showHint && (
+            <Row justifyContent="center" mt="2rem">
+              <div>
+                Hint: <Hint>{hint}</Hint>
+              </div>
+            </Row>
+          )}
         </>
       )}
       {!loading && movies.length === 0 && (
