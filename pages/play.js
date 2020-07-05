@@ -43,7 +43,7 @@ const Play = () => {
 
   const checkAnswer = () => {
     _.each(movie.answers, (answer) => {
-      if (playerInput.toUpperCase() === answer.toUpperCase()) {
+      if (playerInput.toUpperCase().trim() === answer.toUpperCase()) {
         setPoints(points + 1);
         _.remove(movies, movie);
         setShowHint(false);
