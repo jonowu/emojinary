@@ -42,12 +42,12 @@ const HomePage = () => {
       </Flex>
       <Footer>
         <Row flexDirection={['column', 'row']} flexWrap="wrap" justifyContent={['center', 'flex-start']}>
-          <Copyright mt={['0.5rem', '0']} width={['100%', '15%']} order={[3, 0]}>
+          <Copyright mt={['0.5rem', '0']} width={['100%', '20%']} order={[3, 0]}>
             © Copyright Jonathan Wu 2020
           </Copyright>
-          <Byline width={['100%', '70%']}>The ultimate emoji trivia game!</Byline>
-          <Credits mt={['0.5rem', '0']} width={['100%', '15%']}>
-            Credits
+          <Byline width={['100%', '60%']}>The ultimate emoji trivia game!</Byline>
+          <Credits mt={['0.5rem', '0']} width={['100%', '20%']}>
+            <a href="http://github.com/jonowu/emojinary">GitHub</a>
           </Credits>
         </Row>
       </Footer>
