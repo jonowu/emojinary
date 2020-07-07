@@ -59,7 +59,7 @@ const Play = () => {
 
   const checkAnswer = () => {
     _.each(movie.answers, (answer) => {
-      if (playerInput.toUpperCase().trim() === answer.toUpperCase()) {
+      if (playerInput.toUpperCase().replace(/\s/g, '') === answer.toUpperCase().replace(/\s/g, '')) {
         setPoints(points + 1);
         setPlayerInput('');
         setIncorrect(false);
