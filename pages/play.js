@@ -7,7 +7,7 @@ import Layout from '../components/layout';
 import Button from '../components/button';
 import Input from '../components/input';
 import { Row } from '../components/grid';
-import { movies } from '../data';
+import { movies as data } from '../data';
 
 const Heading = styled.h2`
   text-align: center;
@@ -21,6 +21,8 @@ const Emoji = styled.div`
 const Hint = styled.span`
   font-style: italic;
 `;
+
+const movies = [...data];
 
 const Play = () => {
   const [loading, setLoading] = useState(true);
@@ -78,7 +80,9 @@ const Play = () => {
         <Heading>Guess the Movie!</Heading>
       </Row>
       <Row justifyContent="center" mb="0.5rem">
-        <div>Points: {points}</div>
+        <div>
+          Points: {points} out of {data.length}
+        </div>
       </Row>
       {!loading && movies.length > 0 && (
         <>
@@ -112,19 +116,21 @@ const Play = () => {
                 Skip
               </Button>
             </Box>
-            <Box width={[1, 4 / 5, 'auto']} mt={['0.5rem', 0]}>
-              <Button
-                type={'button'}
-                onClick={() => {
-                  setShowHint(!showHint);
-                  setUsedHint(true);
-                }}
-              >
-                {showHint ? 'Hide hint' : 'Show hint'}
-              </Button>
-            </Box>
+            {hint && (
+              <Box width={[1, 4 / 5, 'auto']} mt={['0.5rem', 0]}>
+                <Button
+                  type={'button'}
+                  onClick={() => {
+                    setShowHint(!showHint);
+                    setUsedHint(true);
+                  }}
+                >
+                  {showHint ? 'Hide hint' : 'Show hint'}
+                </Button>
+              </Box>
+            )}
           </Flex>
-          {showHint && (
+          {showHint && hint && (
             <Row justifyContent="center" mt="2rem">
               <div>
                 Hint: <Hint>{hint}</Hint>
