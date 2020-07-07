@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
   a:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
 `;
 

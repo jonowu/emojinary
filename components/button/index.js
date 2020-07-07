@@ -8,18 +8,30 @@ const Wrapper = styled.span`
 
 const StyledAnchor = styled.a`
   background-color: orange;
+  border-radius: 20px;
   color: white;
   cursor: pointer;
-  padding: 10px 50px;
-  border-radius: 20px;
+  max-width: 80px;
+  padding: 12px 40px;
+  text-align: center;
+  width: 80px;
+  :hover {
+    transform: scale(1.1, 1.1);
+  }
 `;
 
 const StyledButton = styled.a`
   background-color: orange;
+  border-radius: 20px;
   color: white;
   cursor: pointer;
-  padding: 10px 50px;
-  border-radius: 20px;
+  max-width: 80px;
+  padding: 12px 40px;
+  text-align: center;
+  width: 80px;
+  :hover {
+    transform: scale(1.1, 1.1);
+  }
 `;
 
 const Button = ({ type, href, children, onClick }) => {
